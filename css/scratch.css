@@ -1,0 +1,93 @@
+/* scratch.css */
+
+/* Global page styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: linear-gradient(to bottom right, #cce0ff, #ffffff); /* soft blue to white gradient */
+    color: #333;
+}
+
+/* Navigation bar styling */
+.nav {
+    background-color: rgba(0, 51, 102, 0.9); /* semi-transparent navy */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* Sections */
+.section {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8); /* slightly transparent white box */
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Headings */
+.section h1, .section h2 {
+    color: #003366; /* dark navy */
+}
+
+/* Lists */
+.section ol, .section ul {
+    padding-left: 20px;
+}
+
+/* Images */
+.image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Captions */
+.caption {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* YouTube iframe/video */
+iframe {
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+/* Tableau section */
+.tableauPlaceholder {
+    margin: 20px 0;
+}
+
+/* Back to top link */
+a[href="#top"] {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #003366;
+    font-weight: bold;
+}
+
+a[href="#top"]:hover {
+    text-decoration: underline;
+}

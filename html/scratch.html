@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Scratch Page</title>
+    <!-- Link to your custom stylesheet -->
+    <link rel="stylesheet" href="../css/scratch.css">
+</head>
+<body>
+
+    <!-- On-page anchor target -->
+    <a id="top"></a>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <a href="../index.html">← Back to Resume</a>
+        |
+        <a href="#tableau">Jump to Tableau Graph</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="section">
+        <h1>One of My Interests: Disneyland</h1>
+        <p>
+            I am a huge Disney fanatic. I know just about anything there is to know about the rides and food options in the parks, as well as the best way to navigate it. I also love to collect the pressed pennies from machines located around the park.
+        </p>
+    </div>
+
+    <!-- Ordered + Unordered List -->
+    <div class="section">
+        <h2>Why I Like This Topic</h2>
+        <ol>
+            <li>Entertainment
+                <ul>
+                    <li>This is one of the most immersive parks in the world</li>
+                    <li>There are rides for all ages to enjoy</li>
+                    <li>Creates lasting memories</li>
+                </ul>
+            </li>
+            <li>Family
+                <ul>
+                    <li>Best place to go and vacation with family</li>
+                    <li>Family friendly rides and attractions</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Image (NOT Bootstrap) -->
+    <div class="section">
+        <h2>Inspiration Image</h2>
+        <img src="../jpeg/disneyland.jpeg" alt="Disneyland Castle" class="image">
+        <p class="caption">The Sleeping Beauty castle is the centerpoint of the Disneyland park.</p>
+    </div>
+
+    <!-- Embedded YouTube Video -->
+    <div class="section">
+        <h2>Favorite Ride</h2>
+        <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/R5ZxZmd-k-o?si=DvgUn4updSC6gLTz"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Tableau Section -->
+    <div class="section" id="tableau">
+        <h2>Interactive Tableau Visualization</h2>
+
+        <div class="tableauPlaceholder" id="viz1765670962477" style="position: relative;">
+            <noscript>
+                <a href="#">
+                    <img
+                        alt="Disneyland Attractions"
+                        src="https://public.tableau.com/static/images/Di/DisneylandAttractionVisualization/Disneyland/1_rss.png"
+                        style="border: none;" />
+                </a>
+            </noscript>
+
+            <object class="tableauViz" style="display:none;">
+                <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                <param name="embed_code_version" value="3" />
+                <param name="site_root" value="" />
+                <param name="name" value="DisneylandAttractionVisualization/Disneyland" />
+                <param name="tabs" value="no" />
+                <param name="toolbar" value="yes" />
+                <param name="static_image"
+                       value="https://public.tableau.com/static/images/Di/DisneylandAttractionVisualization/Disneyland/1.png" />
+                <param name="animate_transition" value="yes" />
+                <param name="display_static_image" value="yes" />
+                <param name="display_spinner" value="yes" />
+                <param name="display_overlay" value="yes" />
+                <param name="display_count" value="yes" />
+                <param name="language" value="en-US" />
+            </object>
+        </div>
+
+        <script type="text/javascript">
+            var divElement = document.getElementById("viz1765670962477");
+            var vizElement = divElement.getElementsByTagName("object")[0];
+            if (divElement.offsetWidth > 800) {
+                vizElement.style.width = "100%";
+                vizElement.style.height = (divElement.offsetWidth * 0.75) + "px";
+            } else if (divElement.offsetWidth > 500) {
+                vizElement.style.width = "100%";
+                vizElement.style.height = (divElement.offsetWidth * 0.75) + "px";
+            } else {
+                vizElement.style.width = "100%";
+                vizElement.style.height = "727px";
+            }
+            var scriptElement = document.createElement("script");
+            scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+
+        <p>
+            This interactive Tableau visualization explores Disneyland attractions
+            using a live, embedded dashboard.
+        </p>
+
+        <a href="#top">Back to top ↑</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's Your Superpower?</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 20px;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    #app {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    /* Start Screen */
+    #startScreen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #startBtn {
+      padding: 12px 22px;
+      background: #3b6cff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #startBtn:hover {
+      background: #294fcc;
+    }
+
+    /* Quiz */
+    #quiz {
+      display: none;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #e9f1ff;
+      border-left: 5px solid #3b6cff;
+      border-radius: 6px;
+    }
+
+    .optionBtn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #3b6cff;
+      color: white;
+      font-size: 15px;
+    }
+
+    .optionBtn:hover {
+      background: #294fcc;
+    }
+
+    /* Results */
+    #result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #fff7d6;
+      border-left: 5px solid #ffcc00;
+      border-radius: 6px;
+      display: none;
+      text-align: center;
+    }
+
+    #returnBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    #returnBtn:hover {
+      background: #cc5200;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>What's Your Superpower?</h1>
+
+    <!-- START SCREEN -->
+    <div id="startScreen">
+      <p>Discover the hidden ability that defines who you truly are.</p>
+      <button id="startBtn">Start the Quiz</button>
+    </div>
+
+    <!-- QUIZ AREA -->
+    <div id="quiz"></div>
+
+    <!-- RESULT AREA -->
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // ===============================
+    // SUPERPOWER QUIZ
+    // ===============================
+
+    const questions = [
+      {
+        text: "In a stressful situation, what comes out strongest?",
+        options: [
+          { text: "I take charge and act decisively.", power: "shapeshift" },
+          { text: "I stay calm and think things through.", power: "animate" }
+        ]
+      },
+      {
+        text: "Your friends would say you are...",
+        options: [
+          { text: "Independent and fierce.", power: "telepathy" },
+          { text: "Reliable and steady.", power: "phase" }
+        ]
+      },
+      {
+        text: "In a group project, you tend to...",
+        options: [
+          { text: "Be the funny, energetic one keeping spirits high.", power: "forcefield" },
+          { text: "Quietly do the work and help others succeed.", power: "animate" }
+        ]
+      },
+      {
+        text: "Which feels most like you?",
+        options: [
+          { text: "Quick-witted and adaptable.", power: "shapeshift" },
+          { text: "Hard-headed but loyal to the core.", power: "phase" }
+        ]
+      },
+      {
+        text: "Which is closer to your nature?",
+        options: [
+          { text: "A light to others, stealing the spotlight a bit.", power: "forcefield" },
+          { text: "Intuitive, perceptive, and independent.", power: "telepathy" }
+        ]
+      }
+    ];
+
+    const powerDescriptions = {
+      shapeshift: {
+        title: "Shapeshifting",
+        desc: "You are courageous, quick‑witted, adaptable, and naturally take the lead. Your mind moves fast — and your form can too."
+      },
+      animate: {
+        title: "Animating the Dead",
+        desc: "You are wise, kind, generous, and incredibly thoughtful. You see value where others overlook — even in the lifeless."
+      },
+      telepathy: {
+        title: "Telepathy",
+        desc: "Independent, loyal, fierce, and deeply intuitive. You understand others without a word — and protect those you care about."
+      },
+      phase: {
+        title: "Phase Through Solid Objects",
+        desc: "Hard‑headed, reliable, self-disciplined, and loyal. Nothing can hold you back — not even a wall."
+      },
+      forcefield: {
+        title: "Forcefields",
+        desc: "You’re funny, energetic, easily distracted, and a light to everyone around you. Your energy alone shields others."
+      }
+    };
+
+    let currentQuestion = 0;
+    let scores = { shapeshift: 0, animate: 0, telepathy: 0, phase: 0, forcefield: 0 };
+
+    document.getElementById("startBtn").onclick = () => {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      loadQuestion();
+    };
+
+    function loadQuestion() {
+      const quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+
+      if (currentQuestion >= questions.length) {
+        showResult();
+        return;
+      }
+
+      const q = questions[currentQuestion];
+      const container = document.createElement("div");
+      container.className = "question";
+      container.innerHTML = `<h3>Question ${currentQuestion + 1}</h3><p>${q.text}</p>`;
+
+      q.options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "optionBtn";
+        btn.textContent = option.text;
+        btn.onclick = () => {
+          scores[option.power]++;
+          currentQuestion++;
+          loadQuestion();
+        };
+        container.appendChild(btn);
+      });
+
+      quizDiv.appendChild(container);
+    }
+
+    function showResult() {
+      document.getElementById("quiz").style.display = "none";
+      const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
+
+      const topPower = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+      const p = powerDescriptions[topPower];
+
+      resultDiv.innerHTML = `
+        <h2>Your Superpower Is: ${p.title}</h2>
+        <p>${p.desc}</p>
+       <a href="../index.html" class="btn btn-primary">Return to Resume</a>
+      `;
+    }
+  </script>
+</body>
+</html>
